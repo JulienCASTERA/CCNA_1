@@ -426,7 +426,7 @@ On peut constater qu'il nous manque la moitié des trames, car le client a ping 
 
 `sudo tcpdump -i enp0s8 -w netcat_ok.pcap`
 
-![Trame WireShark](tp4/images/netcat_wireshark.PNG "Trame WireShark")
+![Trame WireShark](/images/netcat_wireshark.PNG "Trame WireShark")
 
 Les messages en **gris** sont une demande de synchronisation entre 10.2.0.10 et 10.1.0.10, cela veut dire que le client veut se connecter au serveur.
 Une fois qu'il est connecté, nous pouvons voir des messages ARP, cela signifie que la table ARP reconnais que l'IP est atteignable, l'adresse MAC est enregistrée, ensuite les messages TCP sont notre joli dialogue entre client/serveur !
@@ -446,4 +446,4 @@ On relance un petit tcpdump !
 `sudo tcpdump -i enp0s8 -w netcat_ko.pcap`
 
 
-![Trame WireShark](tp4/images/netcat_ko.PNG "Trame WireShark")
+![Trame WireShark](/images/netcat_ko.PNG "Trame WireShark")
