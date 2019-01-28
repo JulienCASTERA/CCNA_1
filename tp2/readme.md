@@ -5,7 +5,6 @@
 
 **1. Affichage d’informations sur la pile TCP / IP locale**
  
-  s
 
 En utilisant la ligne de commande :
 
@@ -54,7 +53,7 @@ Pour trouver la passerelle par défaut de notre carte WiFi il faut taper cette c
 
 Sur Windows, il suffit d'aller comme indiqué sur le screenshot.
 
-![Image du GUI](/images/ipmacgatewayGUI.PNG)
+![Image du GUI](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/ipmacgatewayGUI.PNG)
 
   
 
@@ -76,9 +75,9 @@ La gateway dans le réseau d'Ingésup sert à relier le réseau à un autre rés
 
 **Changer d'adresse IP nôtre carte WiFi pour une autre sur le même réseau d'Ynov**
 
-![Image du changement](/images/changerip.PNG)
+![Image du changement](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/changerip.PNG)
 
-![Image du changement done](/images/changeripdone.PNG)
+![Image du changement done](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/changeripdone.PNG)
 
   
 
@@ -161,7 +160,7 @@ Par exemple :
 
 On a ensuite modifié notre adresse IP comme ceci :
 
-![Image du changement done](/images/modifieripgateway.PNG)
+![Image du changement done](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/ipmacgatewayGUI.PNG)
 
   
 
@@ -199,7 +198,7 @@ On vérifie grâce à cette commande que nos changements ont pris effet :
   
   
 
-![Image du réseau local](/images/duo_changeip.PNG)
+![Image du réseau local](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/duo_changeip.PNG)
 
   
   
@@ -213,7 +212,7 @@ Après s'être assuré que nos deux ordinateurs ont leur adresse IP bien configu
 
   
 
-![Ping local](/images/pinglocal.PNG)
+![Ping local](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/pinglocal.PNG)
 
   
   
@@ -225,7 +224,7 @@ Le ping marche, c'est que nous sommes connectés.
 On désactive l'interface WiFi sur l'un des deux postes,
 les PCs sont bel et bien connectés par ethernet.
 * Sur le PC qui n'a plus internet on a défini comme passerelle l'adresse IP de l'autre PC :
-![Passerelle](/images/duo_connected.PNG)
+![Passerelle](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/duo_connected.PNG)
 
 * Sur le PC qui a toujours internet on a mis le partage de connexion sur la carte wifi connecté à la connexion Ethernet.
 
@@ -247,17 +246,17 @@ Une fois netcat installé sur Windows, on a tapé les commandes suivantes pour c
 	* Sur le PC client : `nc.exe 192.168.137.1 80`
 	
 Une fois ceci fait nous pouvons parler sur le CMD ! Youhouu
-![Connected](/images/duo_netcat.PNG)
+![Connected](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/duo_netcat.PNG)
 
 *  **Wireshark** :
 	* Les trames circulant pendant un ping :
-![Trames](/images/duo_wping.PNG)
+![Trames](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/duo_wping.PNG)
 
 	* Les trames circulant pendant un netcat :
-![Trames](/images/duo_wnetcat.PNG)
+![Trames](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/duo_wnetcat.PNG)
 
 	* Les trames circulant pendant que le PC2 se connecte à internet par la gateway du PC1 :
-![Trames](/images/duo_wgateway.PNG)
+![Trames](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp2/images/duo_wgateway.PNG)
 
 *  **Firewall** :
 	* Pour activer le ping sur le firewall de Windows on tape cette commande la sur le CMD :
