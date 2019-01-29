@@ -595,3 +595,35 @@ firefox
 
 Maintenant on peut acceder au serveur web local sur le client et en prime sur un petit Firefox qui fait plaisir :p
 
+On va maintenant **intercepter le trafic** (tun tun tun...)
+
+On vide toute les tables ARP
+`sudo ip neigh flush all`
+
+
+Ensuite on lance la capture sur le routeur !
+
+`sudo tcpdump -i enp0s8 http.pcap`
+
+
+On effectue ensuite une connexion au serveur avec **Firefox**.
+
+Ensuite, on récupère le fichier .pcap sur l'hôte.
+
+`python2 -m SimpleHTTPServer 8888`
+
+On se connecte au serveur HTTP, on DL `http.pcap`
+
+![Trame WireShark](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp4/images/wireshark_http.PNG "Trame WireShark")
+
+On vois bien la table ARP qui enregistre l'IP du client, ensuite de ca, il y a des requêtes **TCP** sur le port 80 de demande de synchronisation, ensuite une requête **ACK** qui permet d'échanger des données et ensuite nous pouvons voir une requête **HTTP** en GET. 
+
+Cela nous montre que la page demande à être téléchargée par le client.
+
+Une fois la page téléchargée completement, **Wireshark** nous informe que la requête HTTP est "**OK**", ce qui nous donne accès au **contenu de la page**.
+
+![Trame WireShark](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp4/images/wireshark_http_ack.PNG "Trame WireShark")
+
+Nous pouvons donc voir par exemple le titre de la page et le début du css de celle ci.
+
+Les données sont donc interceptées par le **routeur** entre le client et le serveur.
