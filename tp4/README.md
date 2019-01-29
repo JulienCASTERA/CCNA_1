@@ -445,5 +445,153 @@ On relance un petit tcpdump !
 
 `sudo tcpdump -i enp0s8 -w netcat_ko.pcap`
 
-
 ![Trame WireShark](https://raw.githubusercontent.com/JulienCASTERA/CCNA_1/master/tp4/images/netcat_ko.PNG "Trame WireShark")
+
+Bon bah.. le firewall nous dis clairement qu'il nous aime pas, c'est les lignes noires couleur verte qui nous donne comme information " **Host administratively prohibited** "
+
+# C. Interception d'un trafic HTTP (BONUS)
+
+`Tu dis que c'est délire ? On va voir ca ! :D`
+
+On va donc installer un **serveur web** sur le serveur puis installer une interface graphique sur le client afin d'acceder au serveur web du serveur via **Firefox** !
+
+C'est parti !
+
+
+Sur le serveur, on commence par installer un package nommé `nginx`
+
+```
+[vm1@serveur1 ~]$ sudo ifup enp0s3
+[sudo] Mot de passe de vm1 : 
+Connexion activée (chemin D-Bus actif : /org/freedesktop/NetworkManager/ActiveConnection/2)
+[vm1@serveur1 ~]$ sudo yum install -y nginx
+Modules complémentaires chargés : fastestmirror
+Loading mirror speeds from cached hostfile
+epel/x86_64/metalink                                              |  30 kB  00:00:00
+ * base: centos.mirror.ate.info
+ * epel: ftp.ntua.gr
+ * extras: mirrors.atosworldline.com
+ * updates: mirror.plusserver.com
+base                                                              | 3.6 kB  00:00:00
+epel                                                              | 4.7 kB  00:00:00
+extras                                                            | 3.4 kB  00:00:00
+updates                                                           | 3.4 kB  00:00:00
+(1/4): extras/7/x86_64/primary_db                                 | 156 kB  00:00:00
+(2/4): epel/x86_64/updateinfo                                     | 954 kB  00:00:02
+(3/4): updates/7/x86_64/primary_db                                | 1.4 MB  00:00:02
+(4/4): epel/x86_64/primary_db                                     | 6.6 MB  00:00:06
+Le paquet 1:nginx-1.12.2-2.el7.x86_64 est déjà installé dans sa dernière version
+Rien à faire
+```
+
+
+Ensuite, on ouvre le port 80 (ce port est utilisé pour le serveur web) et on lance le serveur (local) en coupant notre carte NAT et en activant nginx.
+
+
+```
+[vm1@serveur1 ~]$ sudo firewall-cmd --add-port=80/tcp --permanent
+success
+[vm1@serveur1 ~]$ sudo firewall-cmd --reload
+success
+[vm1@serveur1 ~]$ sudo systemctl start nginx
+[vm1@serveur1 ~]$ sudo ifdown enp0s3
+Périphérique « enp0s3 » déconnecté.
+[vm1@serveur1 ~]$
+```
+
+On vérifie si c'est ok :
+
+```
+    <body>
+        <h1>Welcome to <strong>nginx</strong> on Fedora!</h1>
+
+        <div class="content">
+            <p>This page is used to test the proper operation of the
+            <strong>nginx</strong> HTTP server after it has been
+            installed. If you can read this page, it means that the
+            web server installed at this site is working
+            properly.</p>
+
+            <div class="alert">
+                <h2>Website Administrator</h2>
+                <div class="content">
+                    <p>This is the default <tt>index.html</tt> page that
+                    is distributed with <strong>nginx</strong> on
+                    Fedora.  It is located in
+                    <tt>/usr/share/nginx/html</tt>.</p>
+
+                    <p>You should now put your content in a location of
+                    your choice and edit the <tt>root</tt> configuration
+                    directive in the <strong>nginx</strong>
+                    configuration file
+                    <tt>/etc/nginx/nginx.conf</tt>.</p>
+
+                </div>
+            </div>
+
+            <div class="logos">
+                <a href="http://nginx.net/"><img
+                    src="nginx-logo.png"
+                    alt="[ Powered by nginx ]"
+                    width="121" height="32" /></a>
+
+                <a href="http://fedoraproject.org/"><img
+                    src="poweredby.png"
+                    alt="[ Powered by Fedora ]"
+                    width="88" height="31" /></a>
+            </div>
+        </div>
+    </body>
+</html>
+[vm1@serveur1 ~]$
+```
+
+Tout va bien ! Notre serveur est lancé ;)
+
+
+Avant de continuer, on va installer une interface graphique sur le client !
+
+On rajoute de la RAM, de la VRAM et deux-trois coeurs histoire que ca lag pas trooop (même si les VMs ca pue un peu quand même :/)
+
+```
+# Allumer l'interface NAT
+sudo ifup enp0s3
+
+# Installation d'un serveur X
+sudo yum groupinstall "X Window system"
+```
+
+Cette partie prend un peu de temps donc on va attendre tranquillement.
+
+
+Une fois ceci terminé, on installe **xfce**
+
+```
+sudo yum groupinstall xfce
+```
+
+Une fois l'installation terminée, on configure notre machine pour qu'elle boot sur l'interface graphique :
+
+```
+[vm1@client1 ~]$ sudo systemctl isolate graphical.target
+[vm1@client1 ~]$ sudo systemctl set-default graphical.target
+Removed symlink /etc/systemd/system/default.target.
+Created symlink from /etc/systemd/system/default.target to /usr/lib/systemd/system/graphical.target.
+```
+
+Et on reboot.
+```
+sudo reboot
+```
+
+Il nous faut maintenant installer **Firefox**
+
+```
+sudo yum install firefox
+
+# Et on le lance après
+firefox
+```
+
+Maintenant on peut acceder au serveur web local sur le client et en prime sur un petit Firefox qui fait plaisir :p
+
