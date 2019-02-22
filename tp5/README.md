@@ -69,7 +69,7 @@ Pour le `router1`:
     10.2.0.0/24 via 10.2.0.254 dev eth0
     ```
   
-  -`Hosts`
+  - `Hosts`
     
     ```bash
     [root@server1 ~]# nano /etc/hosts
