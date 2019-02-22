@@ -28,7 +28,7 @@ Récapitulation des IPs:
 | server1.tp5.b1 |  10.5.1.10 |      X     |     X     |
 
 
-## II. Lancement et configuration du lab
+## II. Lancement et configuration du lab
 
 ### Checklist IP VMs
 
