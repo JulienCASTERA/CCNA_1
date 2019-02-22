@@ -27,7 +27,8 @@ Récapitulation des IPs:
 | router2.tp5.b1 |      X     | 10.5.2.254 | 10.5.12.2 |
 | server1.tp5.b1 |  10.5.1.10 |      X     |     X     |
 
-## II. Lancement et configuration du lab
+
+## II. Lancement et configuration du lab
 
 ### Checklist IP VMs
 
