@@ -345,29 +345,3 @@ Last login: Wed Feb 20 22:01:24 2019 from 10.5.2.50
 #### 2.2 Sur `server1.tp5.b1`
 
 Comme seul l'utilisateur `root` est utilisé pour plus de sécurité il est possible de remplacer dans le fichier `/etc/ssh/sshd_config` `#PermitRootLogin yes` par `PermitRootLogin without-password` afin d'autoriser la connexion SSH pour l'utilisateur `root` uniquement en utilisant uniquement une identification par clés et plus par mot de passe.
-
-### 3. Ajout du `NAT`
-
-Il faut ajouter sur une des interfaces d'un des deux routeurs une connexion vers le NAT.\
-Ici le NAT est relié au `router1.tp5.b1`.
-
-```schema
-               +---------+
-               |         |
-               |   NAT   |
-server1        |         |               Client1                    dhcp-net2
-               +----+----+
-+----+              |                    +----+                      +----+
-|    |              |                    |    |                      |    |
-|    |              |                    |    |                      |    |
-|    |              |                    |    |     +----------+     |    |
-|    |              |                    |    +-----+  Switch  +-----+    |
-+--+-+              |                    +----+     +-----+----+     +----+
-   |                |                                     |
-   |                |                                     |
-   |                |                                     |
-   |              +-+--+         +----+                   |
-   +--------------+    +---------+    +-------------------+
-                  +----+         +----+
-                  router1        router2
-```
