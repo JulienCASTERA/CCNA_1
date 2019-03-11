@@ -251,4 +251,23 @@ r1.tp6.b1#ping 10.6.201.254
 ```
 
 
-**REFAIRE TOUT L'OPSF du routeur 5 (Il a été foiré j'crois)**
+Maintenant, on fait un petit ping de client1 vers server1 !
+
+```
+[vm1@client1 ~]$ ping server1
+PING server1 (10.6.202.10) 56(84) bytes of data.
+64 bytes from server1 (10.6.202.10): icmp_seq=1 ttl=64 time=0.033 ms
+64 bytes from server1 (10.6.202.10): icmp_seq=2 ttl=64 time=0.036 ms
+64 bytes from server1 (10.6.202.10): icmp_seq=3 ttl=64 time=0.041 ms
+64 bytes from server1 (10.6.202.10): icmp_seq=4 ttl=64 time=0.036 ms
+^C
+--- server1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 2999ms
+rtt min/avg/max/mdev = 0.033/0.036/0.041/0.006 ms
+[vm1@client1 ~]$
+
+```
+
+**Niquel tout roule après une reconfig des IPs des Area 1 et 2 car fail :x**
+
+## Lab 3 : Let's end this properly !
