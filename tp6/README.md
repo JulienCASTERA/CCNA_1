@@ -271,3 +271,6 @@ rtt min/avg/max/mdev = 0.033/0.036/0.041/0.006 ms
 **Niquel tout roule après une reconfig des IPs des Area 1 et 2 car fail :x**
 
 ## Lab 3 : Let's end this properly !
+
+Malheureusement, même après reconfiguration des routeurs comme tu m'as dis en cours, impossible de faire fonctionner ce NAT ..
+Je suis tristesse :c
